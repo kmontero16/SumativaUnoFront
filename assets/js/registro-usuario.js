@@ -22,6 +22,10 @@ var Fn = {
     }
 }
 
+function limpiarFormulario() {
+    document.getElementById("Form").reset();
+  }
+
 const limpiarFormulario = () => {
     document.getElementById("nombreMalo").innerHTML = ``;
 
@@ -69,16 +73,24 @@ registroForm.addEventListener('submit', function(event) {
     }
     const REGEXPASS = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/g;
     // debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
-    if (!form.password) {
-        document.getElementById("passMalo").innerHTML = `Ingresa un email correctamente.`;
+    if (!form.password || !(REGEXPASS.test(form.password))) {
+        document.getElementById("passMalo").innerHTML = `Tu contraseña es incorrecta.`;
     }
 
     if(contadorInvalidaciones == 0){
-        // creo usuario y redirecciono al login
-        // tarea ref dejarlo asi http://127.0.0.1:5500/ y concatenar con la pagina de index.html
-        // limpiar formulario
+        function crearUsuario({ name, celular, correo, pais, rut, password }) {
+            usuarios.push({name, celular, correo, pais, rut, password  });
+        
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+        };
+
+        crearUsuario({ name: form.name, celular: form.celular, correo: form.email, Pais: form.pais, rut: form.rut, Password: form.password });
+        location.href = 'http://127.0.0.1:5501/index.html'
+
+        limpiarFormulario();
+
+      
         // usuarios.push(form);
-        // crearUsuario({ name: form.name, password: form.password, email: form.email }); push a array Data
-        // location.href = 'http://127.0.0.1:5500/login.html'
+       
     } 
 });
