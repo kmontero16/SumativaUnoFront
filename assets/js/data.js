@@ -385,7 +385,7 @@ let productos =[
 	},
 	{
 		"id": 36,
-		"name": "",
+		"name": "NOTA 7",
 		"company": "Velit Sed Malesuada Company",
 		"precio": 12819,
 		"category": "desserts"

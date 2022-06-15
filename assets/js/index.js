@@ -11,7 +11,9 @@ function validar() {
       }
     });
     if (flag){
-     alert("correo o contraseña incorrecta") 
+  
+     document.getElementById("alerta").classList.remove("d-none")
+     document.getElementById("alerta").classList.add("d-flex")
     }
     
   }
