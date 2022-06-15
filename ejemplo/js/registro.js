@@ -7,7 +7,7 @@ function crearUsuario({ email, name, password }) {
 };
 
 
-const registroForm = document.querySelector('form#registro');
+const registroForm = document.querySelector('form');
 
 registroForm.addEventListener('submit', function(event) {
     event.preventDefault();
