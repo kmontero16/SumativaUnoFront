@@ -22,12 +22,14 @@ var Fn = {
     }
 }
 
-function limpiarFormulario() {
-    document.getElementById("Form").reset();
-  }
 
 const limpiarFormulario = () => {
     document.getElementById("nombreMalo").innerHTML = ``;
+    document.getElementById("celularMalo").innerHTML = ``;
+    document.getElementById("emailMalo").innerHTML = ``;
+    document.getElementById("paisMalo").innerHTML = ``;
+    document.getElementById("rutMalo").innerHTML = ``;
+    document.getElementById("passMalo").innerHTML = ``;
 
 };
 
@@ -64,23 +66,23 @@ registroForm.addEventListener('submit', function(event) {
     }
 
     if(!form.rut){
-        document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xx.xxx.xxx-x)`;
+        document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xxxxxxx-x)`;
     } else {
         document.getElementById("rutMalo").innerHTML = ``;
         if(!Fn.validaRut(form.rut)){
-            document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xx.xxx.xxx-x)`;
+            document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xxxxxxx-x)`;
         }
     }
     const REGEXPASS = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/g;
     // debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
-    if (!form.password || !(REGEXPASS.test(form.password))) {
-        document.getElementById("passMalo").innerHTML = `Tu contraseña es incorrecta.`;
+    if (!form.password || !(REGEXPASS.test(form.password))) {//Hola!1234
+        document.getElementById("passMalo").innerHTML = `debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.`;
     }
 
     if(contadorInvalidaciones == 0){
         function crearUsuario({ name, celular, correo, pais, rut, password }) {
             usuarios.push({name, celular, correo, pais, rut, password  });
-        
+            alert(usuarios[usuarios.length -1].rut)
             localStorage.setItem('usuarios', JSON.stringify(usuarios));
         };
 
