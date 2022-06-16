@@ -13,12 +13,8 @@ const dibujarTabla = (array) => {
                                     <td>${producto.precio}</td>
                                     <td>${producto.category}</td>
                                     </tr>`);
-    document.getElementById("rellenarTabla").innerHTML = inyecTabla;
-    
+    document.getElementById("rellenarTabla").innerHTML = inyecTabla;    
     paginacion()
-
-
-
 } 
 
 document.getElementById("busqueda").addEventListener('keyup',(event) =>{
