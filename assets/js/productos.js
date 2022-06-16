@@ -19,7 +19,7 @@ const dibujarTabla = (array) => {
 
 
 document.getElementById("busqueda").addEventListener('keyup',(event) =>{
-    let searchP = event.path[0].value;
+    let searchP =document.getElementById("busqueda").value;
     let prodFiltradors = productos.filter(p => p.category.includes(searchP));
     dibujarTabla(prodFiltradors);
 });
