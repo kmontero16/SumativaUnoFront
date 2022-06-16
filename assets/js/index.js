@@ -1,3 +1,9 @@
+if(JSON.parse(localStorage.getItem('usuarios'))!=null){
+    usuarios=JSON.parse(localStorage.getItem('usuarios'))
+}else{
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));    
+    console.log(localStorage.getItem('usuarios'))
+}
 
 function validar() {
     var p = document.getElementById("typePasswordX").value;
