@@ -25,7 +25,7 @@ document.getElementById("busqueda").addEventListener('keyup',(event) =>{
 
 function paginacion(){
     $("#nav").remove();
-
+    //extraido desde stackoverflow 
     $('#tabla').after('<div id="nav"></div>');
     var visibles = 15;
     var rowsTotal = $('#tabla tbody tr').length;
