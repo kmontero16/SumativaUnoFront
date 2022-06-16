@@ -21,7 +21,10 @@ var Fn = {
         return S?S-1:'k';
     }
 }
-
+function crearUsuario(usuarioFom) {
+    usuarios.push(usuarioFom);
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+};
 
 const limpiarFormulario = () => {
     document.getElementById("nombreMalo").innerHTML = ``;
@@ -51,48 +54,42 @@ registroForm.addEventListener('submit', function(event) {
     } 
         
 
-    if(!form.celular || form.celular.length < 8 || !(/([0-9]+)/g.test(form.celular))){
+    if(!form.phone || form.phone.length < 8 || !(/([0-9]+)/g.test(form.phone))){
         ++contadorInvalidaciones;
         document.getElementById("celularMalo").innerHTML = `Ingresa un numero de celular correctamente.`;
     }
 
     let regexCorreo = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/g;
     if (!form.email || !(regexCorreo.test(form.email))) {
+        ++contadorInvalidaciones;
         document.getElementById("emailMalo").innerHTML = `Ingresa un email correctamente.`;
     }
 
-    if(!form.pais){
+    if(!form.country){
+        ++contadorInvalidaciones;
         document.getElementById("paisMalo").innerHTML = `Ingresa un país correctamente.`;
     }
 
     if(!form.rut){
+        ++contadorInvalidaciones;
         document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xxxxxxx-x)`;
     } else {
         document.getElementById("rutMalo").innerHTML = ``;
         if(!Fn.validaRut(form.rut)){
+            ++contadorInvalidaciones;
             document.getElementById("rutMalo").innerHTML = `Ingresa un rut correctamente. (xxxxxxx-x)`;
         }
     }
     const REGEXPASS = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/g;
     // debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.
     if (!form.password || !(REGEXPASS.test(form.password))) {//Hola!1234
+        ++contadorInvalidaciones;
         document.getElementById("passMalo").innerHTML = `debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico.`;
     }
 
     if(contadorInvalidaciones == 0){
-        function crearUsuario({ name, celular, correo, pais, rut, password }) {
-            usuarios.push({name, celular, correo, pais, rut, password  });
-            alert(usuarios[usuarios.length -1].rut)
-            localStorage.setItem('usuarios', JSON.stringify(usuarios));
-        };
-
-        crearUsuario({ name: form.name, celular: form.celular, correo: form.email, Pais: form.pais, rut: form.rut, Password: form.password });
-        location.href = 'http://127.0.0.1:5501/index.html'
-
-        limpiarFormulario();
-
-      
-        // usuarios.push(form);
+        crearUsuario(form);
+        location.href = 'index.html'
        
     } 
 });
